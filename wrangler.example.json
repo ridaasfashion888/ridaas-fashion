@@ -1,0 +1,8 @@
+{
+  "name": "ridaas-fashion",
+  "main": "dist/server/index.js",
+  "compatibility_date": "2026-09-28",
+  "d1_databases": [{"binding":"DB","database_name":"ridaas-store","database_id":"REPLACE_WITH_YOUR_DATABASE_ID","migrations_dir":"drizzle"}],
+  "r2_buckets": [{"binding":"BUCKET","bucket_name":"ridaas-products"}],
+  "triggers": {"crons":["*/30 * * * *"]}
+}

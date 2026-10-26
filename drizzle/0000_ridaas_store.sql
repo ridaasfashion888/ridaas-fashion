@@ -1,0 +1,41 @@
+CREATE TABLE IF NOT EXISTS products (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  slug TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  category TEXT NOT NULL,
+  description TEXT NOT NULL DEFAULT '',
+  price_paise INTEGER NOT NULL DEFAULT 0,
+  price_label TEXT NOT NULL DEFAULT 'Price on request',
+  image_url TEXT NOT NULL DEFAULT '',
+  sizes TEXT NOT NULL DEFAULT 'Custom sizing',
+  stock INTEGER NOT NULL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'active',
+  featured INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  order_number TEXT NOT NULL UNIQUE,
+  customer_name TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  email TEXT NOT NULL DEFAULT '',
+  city TEXT NOT NULL DEFAULT '',
+  notes TEXT NOT NULL DEFAULT '',
+  items_json TEXT NOT NULL,
+  total_paise INTEGER NOT NULL DEFAULT 0,
+  status TEXT NOT NULL DEFAULT 'new',
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_products_status_category ON products(status, category);
+CREATE INDEX IF NOT EXISTS idx_orders_status_created ON orders(status, created_at);
+PRAGMA optimize;

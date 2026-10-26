@@ -1,0 +1,14 @@
+{
+  "name": "ridaas-store",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/server.js && node --check src/client.js",
+    "build": "node build.mjs",
+    "test": "node --test tests/backend.test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.147.0"
+  }
+}
